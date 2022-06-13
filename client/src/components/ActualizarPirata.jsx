@@ -35,7 +35,7 @@ const ActualizarPirata = () => {
                 if(err.response.status ===401){
                     history.push("/login")
                 }else{
-                    history.push("/errors")
+                    history.push("/error")
                 }
             });
     }, [id, history])
@@ -58,7 +58,7 @@ const ActualizarPirata = () => {
             pegLeg: newPegleg,
             eyePatch,
             hookHand
-        })
+        }, {withCredentials:true})
         .catch( err => {
             console.log(err.response.data.errors);
             setErrors(err.response.data.errors);
@@ -82,7 +82,7 @@ const ActualizarPirata = () => {
             pegLeg,
             eyePatch: newEyePatch,
             hookHand
-        })
+        }, {withCredentials:true})
         .catch( err => {
             console.log(err.response.data.errors);
             setErrors(err.response.data.errors);
@@ -106,7 +106,7 @@ const ActualizarPirata = () => {
             pegLeg,
             eyePatch,
             hookHand: newHookHand
-        })
+        }, {withCredentials:true})
         .catch( err => {
             console.log(err.response.data.errors);
             setErrors(err.response.data.errors);
@@ -116,8 +116,8 @@ const ActualizarPirata = () => {
     return(
         <div>
             <div>
+                <Link className="btn btn-primary float-right" to="/pirates">Tablero de la tripulación</Link>
                 <h1>{pirateName}</h1>
-                <Link className="btn btn-primary" to="/pirates">Crew Board</Link>
             </div>
             <br/>
                 <div className="row">
@@ -125,15 +125,15 @@ const ActualizarPirata = () => {
                         <img className="img-fluid" src={imagen} alt="Foto Perfil Pirata"/>
                         <h2>{phrase}</h2>
                     </div>
-                    <div className="col-6">
-                        <p><strong>Position:</strong>{crewPosition}</p>
-                        <p><strong>Treasure:</strong>{treasureChests}</p>
+                    <div className="col-6 justify-content-center">
+                        <p><strong>Posición de la tripulación:</strong>{crewPosition}</p>
+                        <p><strong># de cofres del tesoro:</strong>{treasureChests}</p>
 
-                        <p><strong>Peg Leg:</strong>{pegLeg ? "yes" : "no"}<span><button className={pegLeg ? "btn btn-danger":"btn btn-success"} onClick={(e) => cambioEstadoPegLeg(e)}>{pegLeg ? "no" : "yes"}</button></span></p>
+                        <p><strong>Pata de palo:</strong>{pegLeg ? "yes" : "no"}<span><button className={pegLeg ? "btn btn-danger":"btn btn-success"} onClick={(e) => cambioEstadoPegLeg(e)}>{pegLeg ? "no" : "yes"}</button></span></p>
 
-                        <p><strong>Eye Patch:</strong>{eyePatch ? "yes" : "no"}<span><button className={eyePatch ? "btn btn-danger":"btn btn-success"}  onClick={(e) => cambioEstadoEyePatch(e)}>{eyePatch ? "no" : "yes"}</button></span></p>
+                        <p><strong>PArche en el ojo:</strong>{eyePatch ? "yes" : "no"}<span><button className={eyePatch ? "btn btn-danger":"btn btn-success"}  onClick={(e) => cambioEstadoEyePatch(e)}>{eyePatch ? "no" : "yes"}</button></span></p>
 
-                        <p><strong>Hook Hand:</strong>{hookHand ? "yes" : "no"}<span><button className={hookHand ? "btn btn-danger":"btn btn-success"} onClick={(e) => cambioEstadoHookHand(e)}>{hookHand ? "no" : "yes"}</button></span></p>
+                        <p><strong>Mano de garfio:</strong>{hookHand ? "yes" : "no"}<span><button className={hookHand ? "btn btn-danger":"btn btn-success"} onClick={(e) => cambioEstadoHookHand(e)}>{hookHand ? "no" : "yes"}</button></span></p>
                     </div>
                 </div>
         </div>

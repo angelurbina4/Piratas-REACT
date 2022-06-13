@@ -31,7 +31,7 @@ module.exports.delete_pirata = (req, res) => {
 }
 
 module.exports.get_captain = (req, res) => {
-    Pirata.findOne({crewPosition: "Captain"})
+    Pirata.findOne({crewPosition: "Capitán"})
     .then(captain => res.json(captain))
     .catch(err => res.status(400).json(err));
 }
